@@ -1,0 +1,355 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"shell": {
+			"projectType": "application",
+			"schematics": {},
+			"root": "projects/shell",
+			"sourceRoot": "projects/shell/src",
+			"prefix": "app-shell",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "shell:esbuild:production"
+						},
+						"development": {
+							"target": "shell:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "shell:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/shell/tsconfig.spec.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/shell/public"
+							}
+						],
+						"styles": [
+							"projects/shell/src/styles.css"
+						],
+						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/shell",
+						"index": "projects/shell/src/index.html",
+						"browser": "projects/shell/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "projects/shell/tsconfig.app.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/shell/public"
+							}
+						],
+						"styles": [
+							"projects/shell/src/styles.css"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kB",
+									"maximumError": "4kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "shell:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "shell:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4200
+					}
+				}
+			}
+		},
+		"todo1": {
+			"projectType": "application",
+			"schematics": {},
+			"root": "projects/todo1",
+			"sourceRoot": "projects/todo1/src",
+			"prefix": "app-todo1",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "todo1:esbuild:production"
+						},
+						"development": {
+							"target": "todo1:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "todo1:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/todo1/tsconfig.spec.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/todo1/public"
+							}
+						],
+						"styles": [
+							"projects/todo1/src/styles.css"
+						],
+						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/todo1",
+						"index": "projects/todo1/src/index.html",
+						"browser": "projects/todo1/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "projects/todo1/tsconfig.app.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/todo1/public"
+							}
+						],
+						"styles": [
+							"projects/todo1/src/styles.css"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kB",
+									"maximumError": "4kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "todo1:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "todo1:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201
+					}
+				}
+			}
+		},
+		"todo2": {
+			"projectType": "application",
+			"schematics": {},
+			"root": "projects/todo2",
+			"sourceRoot": "projects/todo2/src",
+			"prefix": "app-todo2",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "todo2:esbuild:production"
+						},
+						"development": {
+							"target": "todo2:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "todo2:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/todo2/tsconfig.spec.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/todo2/public"
+							}
+						],
+						"styles": [
+							"projects/todo2/src/styles.css"
+						],
+						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/todo2",
+						"index": "projects/todo2/src/index.html",
+						"browser": "projects/todo2/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "projects/todo2/tsconfig.app.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/todo2/public"
+							}
+						],
+						"styles": [
+							"projects/todo2/src/styles.css"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kB",
+									"maximumError": "4kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "todo2:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "todo2:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4202
+					}
+				}
+			}
+		}
+	}
+}

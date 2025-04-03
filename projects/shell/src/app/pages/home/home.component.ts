@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit{
   inputData : string = ""
   ngOnInit(): void {
-    this.inputData = localStorage.getItem('value') || ''
+    this.inputData = localStorage.getItem('value') || ''    
   }
 
   handleInput2(event: Event){

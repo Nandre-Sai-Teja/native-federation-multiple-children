@@ -15,9 +15,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.localData = localStorage.getItem('test') || ''
     this.inputData = localStorage.getItem('value') || ''
+    
   }
 
-  input(event: Event){
+  input1(event: Event){
     const value = (event.target as HTMLInputElement)?.value;
     if(value){
       console.log('value', value)

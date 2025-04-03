@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   input(event: Event){
-    const value = (event.target as HTMLInputElement)?.value
+    const value = (event.target as HTMLInputElement)?.value;
     if(value){
       console.log('value', value)
       localStorage.setItem('value', value)
